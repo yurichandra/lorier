@@ -25,3 +25,6 @@
 # Ignore all env files
 .env
 .env.*
+
+# Ignore all csv files to populate data
+csv/
