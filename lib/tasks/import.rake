@@ -1,8 +1,8 @@
 require 'csv'
 
-namespace :province do
+namespace :import do
   desc 'Populate province data to DB'
-  task seed: :environment do
+  task province: :environment do
     key = { :id => 0, :name => 1 }
     data = CSV.read(File.join(Rails.root, '/csv/provinces.csv'))
 
