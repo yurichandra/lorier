@@ -5,7 +5,7 @@ class StationsController < ApplicationController
     if station.save
       render json: StationSerializer.new(station).serialized_json, status: :created
     else
-      render json: station.errors, status: :unprocessable_entity
+      render json: ErrorSerializer.new(station.errors).serialized_json, status: :unprocessable_entity
     end
   end
 
