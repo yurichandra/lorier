@@ -28,12 +28,15 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Read environment variables from env files.
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'fast_jsonapi'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
 end
 
 group :development do
