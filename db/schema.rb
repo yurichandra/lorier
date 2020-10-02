@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_084310) do
+ActiveRecord::Schema.define(version: 2020_10_02_071526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 2020_10_01_084310) do
     t.string "estimation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.bigint "province_id"
+    t.bigint "city_id"
+    t.bigint "district_id"
+    t.string "name"
+    t.string "address"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_stations_on_city_id"
+    t.index ["district_id"], name: "index_stations_on_district_id"
+    t.index ["province_id"], name: "index_stations_on_province_id"
   end
 
   create_table "statuses", force: :cascade do |t|
