@@ -5,6 +5,24 @@ info:
   version: v1
 paths:
   "/stations":
+    get:
+      summary: Get all stations
+      tags:
+      - Stations
+      parameters:
+      - name: includes
+        description: 'Resource that can be included on response. Available: province,
+          city, district'
+        in: query
+        schema:
+          type: string
+          properties:
+            includes:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content: {}
     post:
       summary: Create a station
       tags:
