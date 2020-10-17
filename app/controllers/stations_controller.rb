@@ -1,4 +1,13 @@
 class StationsController < ApplicationController
+  include Optionable
+
+  def index
+    stations = Station.all
+    options = extract_params(params)
+
+    render json: StationSerializer.new(stations, options).serialized_json
+  end
+
   def create
     station = Station.new(station_params)
 
