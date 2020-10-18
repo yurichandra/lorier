@@ -1,24 +1,26 @@
-# README
+# Lorier API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+Lorier (Logistic Courier) is API logistic service implementation written in Ruby on Rails (Only for learning purposes).
 
-* Ruby version
+## How to use
 
-* System dependencies
+- Install necessary ruby version (rbenv recommended)
+- Clone the repo
+- Bundle install by running `bundle install` command
+- Setup DB by running `rails db:create` command
+- Run migration by run `rails db:migrate` command
+- Execute tasks by run `rake:tasks` command to see available tasks
+- Run server by execute `rails s` command
 
-* Configuration
+## Stacks
 
-* Database creation
+- Ruby v2.5.0
+- Rails v5.2
+- PostgreSQL
 
-* Database initialization
+## Stacks Supports
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- API Docs &check;
+- Dockerize &cross;
