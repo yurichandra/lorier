@@ -5,6 +5,12 @@ describe 'Consignee API' do
     get 'Get all consignees' do
       tags 'Consignees'
       produces 'application/json'
+      parameter name: :query, description: 'Query to filter consignee by name', in: :query, schema: {
+        type: :string,
+        properties: {
+          query: { type: :string }
+        }
+      }
       response '200', 'OK' do
         run_test!
       end 

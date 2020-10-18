@@ -2,7 +2,7 @@ class ConsigneesController < ApplicationController
   include ExceptionHandler
 
   def index
-    consignees = Consignee.all
+    consignees = Filter::ConsigneeFilterService.new(params[:query]).perform
 
     render json: ConsigneeSerializer.new(consignees).serialized_json
   end

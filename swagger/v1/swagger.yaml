@@ -9,6 +9,15 @@ paths:
       summary: Get all consignees
       tags:
       - Consignees
+      parameters:
+      - name: query
+        description: Query to filter consignee by name
+        in: query
+        schema:
+          type: string
+          properties:
+            query:
+              type: string
       responses:
         '200':
           description: OK

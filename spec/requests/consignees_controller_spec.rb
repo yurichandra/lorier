@@ -6,23 +6,48 @@ RSpec.describe ConsigneesController, :type => :request do
   describe '#index' do
     let!(:consignee) { FactoryBot.create(:consignee) }
 
-    it 'does return consignees' do
-      get consignees_path
-
-      expect(response).to have_http_status :ok
-      expect(JSON.parse(response.body)).to eql({
-        'data' => [
-          {
-            'id' => consignee.id.to_s,
-            'type' => 'consignee',
-            'attributes' => {
-              'name' => consignee.name,
-              'phone_number' => consignee.phone_number,
-              'address' => consignee.address
+    context 'when without query params' do
+      it 'does return consignees' do
+        get consignees_path
+  
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)).to eql({
+          'data' => [
+            {
+              'id' => consignee.id.to_s,
+              'type' => 'consignee',
+              'attributes' => {
+                'name' => consignee.name,
+                'phone_number' => consignee.phone_number,
+                'address' => consignee.address
+              }
             }
-          }
-        ]
-      })      
+          ]
+        })      
+      end
+    end
+
+    context 'when with query params' do
+      let!(:second_consignee) { FactoryBot.create(:consignee, name: 'Test') }
+
+      it 'does return consignees by query param' do
+        get consignees_path, :params => { :query => 'test' }
+
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)).to eql({
+          'data' => [
+            {
+              'id' => second_consignee.id.to_s,
+              'type' => 'consignee',
+              'attributes' => {
+                'name' => 'Test',
+                'phone_number' => second_consignee.phone_number,
+                'address' => second_consignee.address
+              }
+            }
+          ]
+        })
+      end
     end
   end
 
