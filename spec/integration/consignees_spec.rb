@@ -1,6 +1,16 @@
 require 'swagger_helper'
 
 describe 'Consignee API' do
+  path '/consignees' do
+    get 'Get all consignees' do
+      tags 'Consignees'
+      produces 'application/json'
+      response '200', 'OK' do
+        run_test!
+      end 
+    end
+  end
+
   path '/consignees/{id}' do
     get 'Get a consignee' do
       tags 'Consignees'

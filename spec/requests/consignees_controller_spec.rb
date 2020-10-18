@@ -3,6 +3,29 @@ require 'rails_helper'
 RSpec.describe ConsigneesController, :type => :request do
   include_context 'administrative divisions'
 
+  describe '#index' do
+    let!(:consignee) { FactoryBot.create(:consignee) }
+
+    it 'does return consignees' do
+      get consignees_path
+
+      expect(response).to have_http_status :ok
+      expect(JSON.parse(response.body)).to eql({
+        'data' => [
+          {
+            'id' => consignee.id.to_s,
+            'type' => 'consignee',
+            'attributes' => {
+              'name' => consignee.name,
+              'phone_number' => consignee.phone_number,
+              'address' => consignee.address
+            }
+          }
+        ]
+      })      
+    end
+  end
+
   describe '#show' do
     context 'when consignee is found' do
       let(:consignee) { FactoryBot.create(:consignee) }

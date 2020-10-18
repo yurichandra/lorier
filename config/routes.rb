@@ -6,5 +6,5 @@ Rails.application.routes.draw do
 
   resources :stations, only: %w[index create]
 
-  resources :consignees, only: %w[show create]
+  resources :consignees, only: %w[index show create]
 end
