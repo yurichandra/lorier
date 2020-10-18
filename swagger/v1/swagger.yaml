@@ -4,6 +4,22 @@ info:
   title: Lorier API V1
   version: v1
 paths:
+  "/consignees/{id}":
+    get:
+      summary: Get a consignee
+      tags:
+      - Consignees
+      parameters:
+      - name: consginee_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '404':
+          description: Resource not found
+          content: {}
   "/consignees":
     post:
       summary: Store a new consignee

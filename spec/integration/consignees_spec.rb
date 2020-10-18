@@ -1,6 +1,20 @@
 require 'swagger_helper'
 
 describe 'Consignee API' do
+  path '/consignees/{id}' do
+    get 'Get a consignee' do
+      tags 'Consignees'
+      produces 'application/json'
+      parameter name: :consginee_id, in: :path
+      response '200', 'OK' do
+        run_test!
+      end
+      response '404', 'Resource not found' do
+        run_test!
+      end
+    end
+  end
+
   path '/consignees' do
     post 'Store a new consignee' do
       tags 'Consignees'

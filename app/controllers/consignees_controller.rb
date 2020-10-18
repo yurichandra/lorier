@@ -1,5 +1,12 @@
 class ConsigneesController < ApplicationController
   include ExceptionHandler
+
+  def show
+    consignee = Consignee.find(params[:id])
+
+    render json: ConsigneeSerializer.new(consignee).serialized_json
+  end
+
   def create
     consignee = Consignee.new(consignee_params)
 
