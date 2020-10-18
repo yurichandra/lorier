@@ -1,4 +1,5 @@
 class ConsigneesController < ApplicationController
+  include ExceptionHandler
   def create
     consignee = Consignee.new(consignee_params)
 
