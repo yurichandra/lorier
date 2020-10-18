@@ -1,9 +1,47 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
+  title: Lorier API V1
   version: v1
 paths:
+  "/consignees":
+    post:
+      summary: Store a new consignee
+      tags:
+      - Consignees
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content: {}
+        '422':
+          description: unprocessable_entity
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                address:
+                  type: string
+                phone_number:
+                  type: string
+                province_id:
+                  type: integer
+                city_id:
+                  type: integer
+                district_id:
+                  type: integer
+              required:
+              - name
+              - address
+              - phone_number
+              - province_id
+              - city_id
+              - district_id
   "/stations":
     get:
       summary: Get all stations

@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get '/', to: 'index#index'
 
   resources :stations, only: %w[index create]
+
+  resources :consignees, only: %w[create]
 end
