@@ -1,6 +1,20 @@
 require 'swagger_helper'
 
 describe 'Shipper API' do
+  path '/shippers/{id}' do
+    get 'Find a shipper by ID' do
+      tags 'Shippers'
+      produces 'application/json'
+      parameter name: :shipper_id, in: :path
+      response '200', 'OK' do
+        run_test!
+      end
+      response '404', 'Resource not found' do
+        run_test!
+      end
+    end
+  end
+
   path '/shippers' do
     post 'Store a new shipper' do
       tags 'Shippers'
