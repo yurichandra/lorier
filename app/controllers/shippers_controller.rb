@@ -1,6 +1,12 @@
 class ShippersController < ApplicationController
   include ExceptionHandler
 
+  def index
+    shippers = Filter::ShipperFilterService.new(params[:query]).perform
+
+    render json: ShipperSerializer.new(shippers).serialized_json
+  end
+
   def show
     shipper = Shipper.find(params[:id])
 

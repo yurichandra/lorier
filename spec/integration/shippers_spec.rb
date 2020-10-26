@@ -1,6 +1,22 @@
 require 'swagger_helper'
 
 describe 'Shipper API' do
+  path '/shippers' do
+    get 'Get all shippers' do
+      tags 'Shippers'
+      produces 'application/json'
+      parameter name: :query, description: 'Filter shipper by name', in: :query, schema: {
+        type: :string,
+        properties: {
+          query: { type: :string }
+        }
+      }
+      response '200', 'OK' do
+        run_test!
+      end 
+    end
+  end
+
   path '/shippers/{id}' do
     get 'Find a shipper by ID' do
       tags 'Shippers'

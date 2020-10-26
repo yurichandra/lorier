@@ -3,6 +3,53 @@ require 'rails_helper'
 RSpec.describe ShippersController, type: :request do
   include_context 'administrative divisions'
 
+  describe '#index' do
+    context 'without any query' do
+      let!(:shipper) { FactoryBot.create(:shipper) }
+
+      it 'does return HTTP ok status and its response' do
+        get shippers_path
+
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)).to eql({
+          'data' => [{
+            'id' => shipper.id.to_s,
+            'type' => 'shipper',
+            'attributes' => {
+              'name' => shipper.name,
+              'phone_number' => shipper.phone_number,
+              'address' => shipper.address
+            }
+          }]
+        })
+      end
+    end
+
+    context 'with name query' do
+      let!(:shipper) { FactoryBot.create(:shipper, name: 'Test') }
+
+      it 'does return HTTP ok status and its response' do
+        get shippers_path,
+        params: {
+          query: 'Test'
+        }
+
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)).to eql({
+          'data' => [{
+            'id' => shipper.id.to_s,
+            'type' => 'shipper',
+            'attributes' => {
+              'name' => shipper.name,
+              'phone_number' => shipper.phone_number,
+              'address' => shipper.address
+            }
+          }]
+        })
+      end
+    end
+  end
+
   describe '#show' do
     context 'when shipper is found' do
       let!(:shipper) { FactoryBot.create(:shipper) }

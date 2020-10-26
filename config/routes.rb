@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   resources :consignees, only: %i[index show create]
 
-  resources :shippers, only: %i[create show]
+  resources :shippers, only: %i[index show create]
 end

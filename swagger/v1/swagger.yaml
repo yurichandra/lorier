@@ -75,23 +75,24 @@ paths:
         '404':
           description: Resource not found
           content: {}
-  "/shippers/{id}":
+  "/shippers":
     get:
-      summary: Find a shipper by ID
+      summary: Get all shippers
       tags:
       - Shippers
       parameters:
-      - name: shipper_id
-        in: path
-        required: true
+      - name: query
+        description: Filter shipper by name
+        in: query
+        schema:
+          type: string
+          properties:
+            query:
+              type: string
       responses:
         '200':
           description: OK
           content: {}
-        '404':
-          description: Resource not found
-          content: {}
-  "/shippers":
     post:
       summary: Store a new shipper
       tags:
@@ -129,6 +130,22 @@ paths:
               - province_id
               - city_id
               - district_id
+  "/shippers/{id}":
+    get:
+      summary: Find a shipper by ID
+      tags:
+      - Shippers
+      parameters:
+      - name: shipper_id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '404':
+          description: Resource not found
+          content: {}
   "/stations":
     get:
       summary: Get all stations
