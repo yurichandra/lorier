@@ -75,6 +75,44 @@ paths:
         '404':
           description: Resource not found
           content: {}
+  "/shippers":
+    post:
+      summary: Store a new shipper
+      tags:
+      - Shippers
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content: {}
+        '422':
+          description: unprocessable_entity
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                address:
+                  type: string
+                phone_number:
+                  type: string
+                province_id:
+                  type: integer
+                city_id:
+                  type: integer
+                district_id:
+                  type: integer
+              required:
+              - name
+              - address
+              - phone_number
+              - province_id
+              - city_id
+              - district_id
   "/stations":
     get:
       summary: Get all stations

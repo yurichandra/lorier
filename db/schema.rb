@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_065647) do
+ActiveRecord::Schema.define(version: 2020_10_26_132714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 2020_10_18_065647) do
     t.string "estimation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shippers", force: :cascade do |t|
+    t.bigint "province_id"
+    t.bigint "city_id"
+    t.bigint "district_id"
+    t.string "name"
+    t.string "phone_number"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_shippers_on_city_id"
+    t.index ["district_id"], name: "index_shippers_on_district_id"
+    t.index ["province_id"], name: "index_shippers_on_province_id"
   end
 
   create_table "stations", force: :cascade do |t|
