@@ -1,0 +1,2 @@
+class ShipmentLog < ApplicationRecord
+end
