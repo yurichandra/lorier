@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set ruby version
-        uses: ruby/ruby-setup@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.6
