@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :consignees, only: %i[index show create]
 
   resources :shippers, only: %i[index show create]
+
+  resources :shipments, only: %i[create]
 end
