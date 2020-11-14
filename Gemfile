@@ -28,9 +28,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Read environment variables from env files.
 gem 'dotenv-rails', groups: [:development, :test]
 
+# Serializer
 gem 'fast_jsonapi'
-
-gem 'rswag'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
