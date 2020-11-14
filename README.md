@@ -22,5 +22,5 @@ Lorier (Logistic Courier) is API logistic service implementation written in Ruby
 
 ## Stacks Supports
 
-- API Docs &check;
+- API Docs &cross;
 - Dockerize &cross;
