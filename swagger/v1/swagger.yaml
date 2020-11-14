@@ -75,6 +75,55 @@ paths:
         '404':
           description: Resource not found
           content: {}
+  "/shipments":
+    post:
+      summary: store a new shipment
+      tags:
+      - Shipments
+      parameters: []
+      responses:
+        '201':
+          description: created
+          content: {}
+        '422':
+          description: unprocessable_entity
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shipping_notes:
+                  type: string
+                shipping_date:
+                  type: string
+                service_code:
+                  type: string
+                shipper_id:
+                  type: integer
+                consignee_id:
+                  type: integer
+                shipment_items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description:
+                        type: string
+                      width:
+                        type: number
+                      height:
+                        type: number
+                      length:
+                        type: number
+              required:
+              - shipping_notes
+              - shipping_date
+              - service_code
+              - shipper_id
+              - consignee_id
+              - shipment_items
   "/shippers":
     get:
       summary: Get all shippers
