@@ -21,6 +21,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.6
+      - name: Cache ruby gem
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ruby-gem-cache
       - name: Bundle install
         run: bundle install
       - name: Setup postgres
@@ -30,7 +35,7 @@ jobs:
           DB_DATABASE: postgres
           DB_HOST: localhost
           DB_USER: postgres
-          DB_PASSWORD: password
+          DB_PASSWORD: postgres
           RAILS_ENV: test
         run: |
           bin/rails db:setup
