@@ -16,18 +16,16 @@ jobs:
         with:
           ruby-version: 2.6.6
       - name: Bundle install
-          run: |
-            bundle install
+        run: bundle install
       - name: Setup postgres
-          run: |
-            sudo apt install libpq-dev
+        run: sudo apt install libpq-dev
       - name: Run test
-          env:
-            DB_DATABASE: postgres
-            DB_HOST: localhost
-            DB_USER: postgres
-            DB_PASSWORD: password
-            RAILS_ENV: test
-          run: |
-            bin/rails db:setup
-            COVERAGE=true bundle exec rspec spec -f d
+        env:
+          DB_DATABASE: postgres
+          DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: password
+          RAILS_ENV: test
+        run: |
+          bin/rails db:setup
+          COVERAGE=true bundle exec rspec spec -f d
