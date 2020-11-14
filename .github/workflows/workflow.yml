@@ -13,7 +13,9 @@ jobs:
         image: postgres:latest
         ports: ["5432:5432"]
         env:
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lorier_test
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,11 +30,9 @@ jobs:
           key: ruby-gem-cache
       - name: Bundle install
         run: bundle install
-      - name: Setup postgres
-        run: sudo apt install libpq-dev
       - name: Run test
         env:
-          DB_DATABASE: postgres
+          DB_DATABASE_TEST: lorier_test
           DB_HOST: localhost
           DB_USER: postgres
           DB_PASSWORD: postgres
