@@ -28,3 +28,5 @@
 
 # Ignore all csv files to populate data
 csv/
+
+coverage/
