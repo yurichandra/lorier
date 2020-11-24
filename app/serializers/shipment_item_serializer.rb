@@ -1,3 +1,3 @@
 class ShipmentItemSerializer
-  include FastJsonApi::ObjectSerializer
+  include FastJsonapi::ObjectSerializer
 end
