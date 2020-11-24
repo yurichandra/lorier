@@ -44,6 +44,8 @@ jobs:
   build-lorier:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Build docker image
         run: docker build -t docker.pkg.github.com/yurichandra/lorier/lorier:latest .
       - name: Push docker image
