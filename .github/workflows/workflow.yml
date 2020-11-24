@@ -40,3 +40,12 @@ jobs:
         run: |
           bin/rails db:setup
           COVERAGE=true bundle exec rspec spec -f d
+
+  build-lorier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docker image
+        run: docker build -t docker.pkg.github.com/yurichandra/lorier/lorier:latest .
+      - name: Push docker image
+        run: docker push docker.pkg.github.com/yurichandra/lorier/lorier:latest
+      
