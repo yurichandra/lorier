@@ -8,6 +8,15 @@ RSpec.describe ShipmentsController, type: :request do
   let!(:status) { FactoryBot.create(:status, :on_process) }
   let(:shipper) { FactoryBot.create(:shipper) }
   let(:consignee) { FactoryBot.create(:consignee) }
+  let!(:fare) do
+    FactoryBot.create(
+      :fare,
+      service_code: service.code,
+      origin_id: shipper.district_id,
+      destination_id: consignee.district_id,
+      amount: 5000
+    )
+  end
 
   describe '#create' do
     context 'when valid' do
