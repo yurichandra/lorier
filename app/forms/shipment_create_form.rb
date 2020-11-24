@@ -1,8 +1,6 @@
 class ShipmentCreateForm
   include ActiveModel::Model
 
-  FLAT_FARE = 5000.freeze
-
   attr_accessor :shipment
 
   def initialize(shipment, params)
@@ -31,6 +29,9 @@ class ShipmentCreateForm
 
   def store_shipment
     shipper = Shipper.find(@params[:shipper_id])
+    consignee = Consignee.find(@params[:consignee_id])
+
+    fare = total_fare(shipper.district_id, consignee.district_id)
 
     awb = AirwayBill::GeneratorService.new(
       service_code: @params[:service_code],
@@ -38,11 +39,20 @@ class ShipmentCreateForm
     ).perform
 
     @shipment.airway_bill = awb
+    @shipment.amount = fare
     @shipment.status_id = Status::STATUSES[:'On Process']
     @shipment.shipment_logs.build(logs_param)
     handle_shipping_items
 
     @shipment.save
+  end
+
+  def total_fare(origin_id, destination_id)
+    Fare.find_by!(
+      service_code: @params[:service_code],
+      origin_id: origin_id,
+      destination_id: destination_id
+    ).amount
   end
 
   def logs_param
