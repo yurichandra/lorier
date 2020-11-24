@@ -3,7 +3,12 @@ class AirwayBillSerializer
 
   attributes :service_code, :airway_bill, :shipping_date, :receive_date
 
-  belongs_to :status
+  attributes :status do |shipment|
+    {
+      id: shipment.status.id,
+      name: shipment.status.name
+    }
+  end
 
   attributes :shipment_logs, :consignee, :shipper, if: Proc.new { |_record, params|
     params && params[:action] == 'show'

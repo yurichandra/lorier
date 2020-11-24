@@ -36,23 +36,11 @@ RSpec.describe AirwayBillsController, type: :request do
               'service_code' => shipment.service_code,
               'airway_bill' => shipment.airway_bill,
               'shipping_date' => shipment.shipping_date.strftime('%Y-%m-%d'),
-              'receive_date' => shipment.receive_date
-            },
-            'relationships' => {
+              'receive_date' => shipment.receive_date,
               'status' => {
-                'data' => {
-                  'id' => shipment.status.id.to_s,
-                  'type' => 'status'
-                }
+                'id' => shipment.status.id,
+                'name' => shipment.status.name
               }
-            }
-          }],
-          'included' => [{
-            'id' => shipment.status.id.to_s,
-            'type' => 'status',
-            'attributes' => {
-              'id' => shipment.status.id,
-              'name' => shipment.status.name
             }
           }]
         })
@@ -65,8 +53,7 @@ RSpec.describe AirwayBillsController, type: :request do
 
         expect(response).to have_http_status :ok
         expect(JSON.parse(response.body)).to eql({
-          'data' => [],
-          'included' => []
+          'data' => []
         })
       end
     end

@@ -3,7 +3,7 @@ class AirwayBillsController < ApplicationController
     airway_bills = parse_airway_bills_params
     result = AirwayBill::FinderService.new(airway_bills).perform
 
-    options = { include: [:status] }
+    options = { params: { action: 'index' }}
 
     render json: AirwayBillSerializer.new(result, options).serialized_json
   end
@@ -16,6 +16,7 @@ class AirwayBillsController < ApplicationController
 
     render json: AirwayBillSerializer.new(airway_bill, options).serialized_json
   end
+
   private
 
   def parse_airway_bills_params
