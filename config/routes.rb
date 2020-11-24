@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   resources :shipments, only: %i[create]
 
-  resources :airway_bills, only: %i[index]
+  resources :airway_bills, param: :airway_bill, only: %i[index show]
 end
