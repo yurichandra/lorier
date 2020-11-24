@@ -3,7 +3,7 @@ require 'csv'
 namespace :import do
   desc 'Populate province data to DB'
   task province: :environment do
-    key = { :id => 0, :name => 1 }
+    key = { id: 0, name: 1 }
     data = CSV.read(File.join(Rails.root, '/csv/provinces.csv'))
 
     data.each do |item|
@@ -16,9 +16,9 @@ namespace :import do
   desc 'Populate city data to DB'
   task city: :environment do
     key = {
-      :id => 0,
-      :province_id => 1,
-      :name => 2
+      id: 0,
+      province_id: 1,
+      name: 2
     }
 
     data = CSV.read(File.join(Rails.root, '/csv/regencies.csv'))
@@ -33,9 +33,9 @@ namespace :import do
   desc 'Populate district data to DB'
   task district: :environment do
     key = {
-      :id => 0,
-      :city_id => 1,
-      :name => 2
+      id: 0,
+      city_id: 1,
+      name: 2
     }
 
     data = CSV.read(File.join(Rails.root, '/csv/districts.csv'))

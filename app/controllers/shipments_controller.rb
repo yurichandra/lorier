@@ -14,18 +14,9 @@ class ShipmentsController < ApplicationController
 
   def shipment_create_params
     params.permit(
-      :service_code,
-      :shipper_id,
-      :consignee_id,
-      :shipping_date,
-      :shipping_notes,
-      :shipping_items => [
-        :description,
-        :length,
-        :width,
-        :height,
-        :quantity
-      ]
+      :service_code, :shipper_id, :consignee_id,
+      :shipping_date, :shipping_notes,
+      shipping_items: %i[description length width height quantity]
     )
   end
 end

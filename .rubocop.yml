@@ -1,0 +1,15 @@
+AllCops:
+  TargetRubyVersion: 2.6.6
+  DisplayCopNames: true
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'spec/**/*'
+    - 'bin/*'
+    - 'lib/*/*'
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

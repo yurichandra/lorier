@@ -11,7 +11,7 @@ module Filter
     end
 
     def filter_by_name
-      results = Consignee.where("name ILIKE ?", "%#{@query}%")
+      Consignee.where('name ILIKE ?', "%#{@query}%")
     end
   end
 end

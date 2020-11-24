@@ -6,7 +6,7 @@ namespace :status do
       'Received at Sorting House',
       'Received at Warehouse',
       'With Delivery Courier',
-      'Delivered',
+      'Delivered'
     ]
 
     data.each do |item|

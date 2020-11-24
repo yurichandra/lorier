@@ -28,23 +28,34 @@ class ShipmentCreateForm
   private
 
   def store_shipment
-    shipper = Shipper.find(@params[:shipper_id])
-    consignee = Consignee.find(@params[:consignee_id])
+    shipper = find_shipper
+    consignee = find_consignee
 
-    fare = total_fare(shipper.district_id, consignee.district_id)
+    @shipment.assign_attributes({
+                                  airway_bill: generate_airway_bill(shipper),
+                                  amount: total_fare(shipper.district_id, consignee.district_id),
+                                  status_id: Status::STATUSES[:'On Process']
+                                })
 
-    awb = AirwayBill::GeneratorService.new(
-      service_code: @params[:service_code],
-      district_id: shipper.district_id
-    ).perform
-
-    @shipment.airway_bill = awb
-    @shipment.amount = fare
-    @shipment.status_id = Status::STATUSES[:'On Process']
     @shipment.shipment_logs.build(logs_param)
     handle_shipping_items
 
     @shipment.save
+  end
+
+  def find_shipper
+    Shipper.find(@params[:shipper_id])
+  end
+
+  def find_consignee
+    Consignee.find(@params[:consignee_id])
+  end
+
+  def generate_airway_bill(shipper)
+    AirwayBill::GeneratorService.new(
+      service_code: @params[:service_code],
+      district_id: shipper.district_id
+    ).perform
   end
 
   def total_fare(origin_id, destination_id)
@@ -67,11 +78,11 @@ class ShipmentCreateForm
   def handle_shipping_items
     @params[:shipping_items].each do |item|
       @shipment.shipment_items.build({
-        description: item[:description],
-        width: item[:width],
-        length: item[:length],
-        height: item[:height]
-      })
+                                       description: item[:description],
+                                       width: item[:width],
+                                       length: item[:length],
+                                       height: item[:height]
+                                     })
     end
   end
 end

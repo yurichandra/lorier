@@ -1,5 +1,5 @@
 class Shipment < ApplicationRecord
-  belongs_to :service, :foreign_key => :service_code
+  belongs_to :service, foreign_key: :service_code
   belongs_to :shipper
   belongs_to :consignee
   belongs_to :status

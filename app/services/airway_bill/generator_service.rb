@@ -7,7 +7,7 @@ module AirwayBill
 
     def perform
       number = Shipment.count + 1
-      pad_number = sprintf("%05d", number)
+      pad_number = format('%<number>05d', number: number)
 
       "#{@service_code}-#{@district_id}-#{pad_number}"
     end
