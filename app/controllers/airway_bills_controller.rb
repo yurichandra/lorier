@@ -1,4 +1,6 @@
 class AirwayBillsController < ApplicationController
+  include ExceptionHandler
+
   def index
     airway_bills = parse_airway_bills_params
     result = AirwayBill::FinderService.new(airway_bills).perform
@@ -10,7 +12,7 @@ class AirwayBillsController < ApplicationController
 
   def show
     airway_bill = Shipment.includes(:shipment_logs, :shipper, :consignee, :status)
-                          .find_by(airway_bill: params[:airway_bill])
+                          .find_by!(airway_bill: params[:airway_bill])
 
     options = { params: { action: 'show' }}
 

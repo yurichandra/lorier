@@ -58,4 +58,22 @@ RSpec.describe AirwayBillsController, type: :request do
       end
     end
   end
+
+  describe '#show' do
+    context 'when airway bill is exist' do
+      it 'does return shipment with certain airway bill' do
+        get airway_bill_path('123123')
+
+        expect(response).to have_http_status :ok
+      end
+    end
+
+    context 'when airway bill is not exist' do
+      it 'does not return anything' do
+        get airway_bill_path('123124')
+
+        expect(response).to have_http_status :not_found
+      end
+    end
+  end
 end
