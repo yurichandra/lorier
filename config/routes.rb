@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :shippers, only: %i[index show create]
 
   resources :shipments, only: %i[create]
+
+  resources :airway_bills, only: %i[index]
 end
